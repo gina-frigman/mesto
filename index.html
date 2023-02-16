@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+        <link rel="stylesheet" href="./pages/index.css">
+        <title>место</title>
+    </head>
+    <body class="page">
+        <header class="header">
+            <img class="header__logo" src="./images/logo.svg">
+        </header>
+        <main class="main">
+            <section class="profile">
+                <img class="profile__avatar" src="./images/avatar.jpg">
+                <div class="profile-info">
+                    <div class="profile-info-flex">
+                        <p class="profile-info-flex__name">Жак-Ив Кусто</p>
+                        <button class="profile-info-flex__edit" type="button"></button>
+                    </div>
+                    <p class="profile-info__status">Исследователь океана</p>
+                </div>
+                <button class="profile__add" type="button"></button>
+            </section>
+            <section class="places">
+                <div class="place">
+                    <img class="place__image" src="./images/walk.jpeg">
+                    <div class="place-info">
+                        <h1 class="place-info__name">летняя прогулка в петербурге</h1>
+                        <button class="place-info__like place-info__like_active" type="button"></button>
+                    </div>
+                </div>
+                <div class="place">
+                    <img class="place__image" src="./images/repetition.jpeg">
+                    <div class="place-info">
+                        <h1 class="place-info__name">репетиция перед выступлением</h1>
+                        <button class="place-info__like place-info__like_active" type="button"></button>
+                    </div>
+                </div>
+                <div class="place">
+                    <img class="place__image" src="./images/school.jpeg">
+                    <div class="place-info">
+                        <h1 class="place-info__name">вечерняя школа</h1>
+                        <button class="place-info__like place-info__like_active" type="button"></button>
+                    </div>
+                </div>
+                <div class="place">
+                    <img class="place__image" src="./images/winter.jpeg">
+                    <div class="place-info">
+                        <h1 class="place-info__name">школьный зимний пейзаж</h1>
+                        <button class="place-info__like place-info__like_active" type="button"></button>
+                    </div>
+                </div>
+                <div class="place">
+                    <img class="place__image" src="./images/graduation.jpeg">
+                    <div class="place-info">
+                        <h1 class="place-info__name">выпускной сестры</h1>
+                        <button class="place-info__like place-info__like_active" type="button"></button>
+                    </div>
+                </div>
+                <div class="place">
+                    <img class="place__image" src="./images/seaside.jpeg">
+                    <div class="place-info">
+                        <h1 class="place-info__name">побережье комарово</h1>
+                        <button class="place-info__like place-info__like_active" type="button"></button>
+                    </div>
+                </div>
+            </section>
+            <section class="popup">
+                <form class="popup__container">
+                    <!--not sure about naming. check for bem-->
+                    <button class="popup__close" type="button"></button>
+                    <h1 class="popup__title">Редактировать профиль</h1>
+                    <input class="popup__name" type="text" value="Жак-Ив Кусто">
+                    <input class="popup__status" type="text" value="Исследователь океана">
+                    <!--not sure if it works like this-->
+                    <button class="popup__submit" type="submit">Сохранить</button>
+                </form>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__text">&copy;2023. mesto. yella</p>
+        </footer>
+        <script src="./scripts/index.js"></script>
+    </body>
+</html>
