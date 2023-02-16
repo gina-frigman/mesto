@@ -1,0 +1,19 @@
+.popup__status {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: 0;
+    border-bottom: solid 1px #000;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    box-sizing: border-box;
+    min-width: 358px;
+    margin: 0 0 48px;
+}
+
+@media screen and (max-width: 999px) {
+    .popup__status {
+        min-width: 238px;
+        margin-bottom: 45px;
+    }
+}

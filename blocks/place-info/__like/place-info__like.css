@@ -1,0 +1,13 @@
+.place-info__like {
+    background-image: url(./../../../images/like.svg);
+    background-size: cover;
+    border: none;
+    min-height: 19px;
+    min-width: 22px;
+    cursor: pointer;
+}
+
+.place-info__like:hover {
+    opacity: .5;
+    transition: opacity ease-out .3s;
+}
