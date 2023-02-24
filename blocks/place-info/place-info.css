@@ -1,5 +1,6 @@
 .place-info {
+    min-width: 243px;
     display: flex;
     align-items: center;
-    margin: 25px 30px 0 21px;
+    margin: 25px 30px 0 18px;
 }

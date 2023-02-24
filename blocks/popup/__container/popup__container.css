@@ -10,3 +10,10 @@
     position: relative;
     margin: auto;
 }
+
+@media screen and (max-width: 999px) {
+    .popup__container {
+        width: 282px;
+        height: 322px;
+    }
+}
