@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 999px) {
-    .popup__name {
+    .popup__input {
         min-width: 238px;
     }
 }
