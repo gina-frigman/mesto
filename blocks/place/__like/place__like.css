@@ -1,4 +1,4 @@
-.place-info__like {
+.place__like {
     background-image: url(./../../../images/like.svg);
     background-size: cover;
     border: none;
@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 
-.place-info__like:hover {
+.place__like:hover {
     opacity: .5;
     transition: opacity ease-out .3s;
 }

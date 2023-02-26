@@ -1,37 +1,28 @@
-let editButton = document.querySelector('.profile-info-flex__edit');
-let addButton = document.querySelector('.profile__add');
-let likeButton = document.querySelector('.place-info__like');
-let submitButton = document.querySelector('.popup__submit');
+let editButton = document.querySelector('.profile__edit');
 let closeButton = document.querySelector('.popup__close');
-let nameForm = document.querySelector('.popup__name');
-let statusForm = document.querySelector('.popup__status');
+let nameForm = document.querySelector('.popup__input_type_name');
+let statusForm = document.querySelector('.popup__input_type_status');
+let popup = document.querySelector('.popup');
+let nameProfile = document.querySelector('.profile__name');
+let statusProfile = document.querySelector('.profile-info__status');
 
-function formAppearing() {
-    let popup = document.querySelector('.popup');
+function popupOpening() {
     popup.classList.add('popup_opened');
+    nameForm.value = nameProfile.textContent;
+    statusForm.value = statusProfile.textContent;
 };
 
-function formDisappearing() {
-    let popup = document.querySelector('.popup');
+function popupClosing() {
     popup.classList.remove('popup_opened');
 };
 
 function savingData(evt) {
     evt.preventDefault();
-    let profileInfo = document.querySelector('.profile-info');
-    
-    profileInfo.innerHTML = `
-    <div class="profile-info">
-        <div class="profile-info-flex">
-            <p class="profile-info-flex__name">${nameForm.value}</p>
-            <button class="profile-info-flex__edit" type="button"></button>
-        </div>
-        <p class="profile-info__status">${statusForm.value}</p>
-    </div>
-    `;
-    formDisappearing();
+    nameProfile.textContent = nameForm.value;
+    statusProfile.textContent = statusForm.value;
+    popupClosing();
 };
 
-editButton.addEventListener('click', formAppearing);
-closeButton.addEventListener('click', formDisappearing);
-submitButton.addEventListener('click', savingData);
+editButton.addEventListener('click', popupOpening);
+closeButton.addEventListener('click', popupClosing);
+addEventListener('submit', savingData);

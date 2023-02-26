@@ -1,5 +1,5 @@
 .popup__close {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0);
     background-image: url(./../../../images/close.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -7,8 +7,8 @@
     width: 32px;
     height: 32px;
     position: absolute;
-    margin-left: 480px;
     top: -40px;
+    right: -40px;
     border: 0;
     cursor: pointer;
 }
@@ -22,7 +22,7 @@
     .popup__close {
         width: 20px;
         height: 20px;
-        margin-left: 260px;
+        right: 0;
         top: -37px;
     }
 }

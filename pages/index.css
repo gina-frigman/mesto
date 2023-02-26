@@ -10,26 +10,28 @@
 @import url(./../blocks/profile/profile.css);
 @import url(./../blocks/profile/__avatar/profile__avatar.css);
 @import url(./../blocks/profile-info/profile-info.css);
-@import url(./../blocks/profile-info-flex/profile-info-flex.css);
-@import url(./../blocks/profile-info-flex/__name/profile-info-flex__name.css);
-@import url(./../blocks/profile-info-flex/__edit/profile-info-flex__edit.css);
+@import url(./../blocks/profile/__info/profile__info.css);
+@import url(./../blocks/profile/__name/profile__name.css);
+@import url(./../blocks/profile/__edit/profile__edit.css);
 @import url(./../blocks/profile-info/__status/profile-info__status.css);
 @import url(./../blocks/profile/__add/profile__add.css);
 
 @import url(./../blocks/places/places.css);
 @import url(./../blocks/place/place.css);
 @import url(./../blocks/place/__image/place__image.css);
-@import url(./../blocks/place-info/place-info.css);
-@import url(./../blocks/place-info/__name/place-info__name.css);
-@import url(./../blocks/place-info/__like/place-info__like.css);
+@import url(./../blocks/place/__info/place__info.css);
+@import url(./../blocks/place/__name/place__name.css);
+@import url(./../blocks/place/__like/place__like.css);
 
 @import url(./../blocks/popup/popup.css);
-@import url(./../blocks/popup/_condition/popup_opened.css);
+@import url(./../blocks/popup/_opened/popup_opened.css);
 @import url(./../blocks/popup/__close/popup__close.css);
 @import url(./../blocks/popup/__container/popup__container.css);
+@import url(./../blocks/popup/__form/popup__form.css);
 @import url(./../blocks/popup/__title/popup__title.css);
-@import url(./../blocks/popup/__name/popup__name.css);
-@import url(./../blocks/popup/__status/popup__status.css);
+@import url(./../blocks/popup/__input/popup__input.css);
+@import url(./../blocks/popup/__input/_type/popup__input_type_name.css);
+@import url(./../blocks/popup/__input/_type/popup__input_type_status.css);
 @import url(./../blocks/popup/__submit/popup__submit.css);
 
 @import url(./../blocks/footer/footer.css);

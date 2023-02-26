@@ -1,4 +1,4 @@
-.profile-info-flex__edit {
+.profile__edit {
     background-color: #000;
     background-image: url(./../../../images/edit.svg);
     background-repeat: no-repeat;
@@ -11,13 +11,13 @@
     cursor: pointer;
 }
 
-.profile-info-flex__edit:hover {
+.profile__edit:hover {
     opacity: .6;
     transition: opacity ease-out .3s;
 }
 
 @media screen and (max-width: 999px) {
-    .profile-info-flex__edit {
+    .profile__edit {
         width: 18px;
         height: 18px;
         margin-left: 11px;
