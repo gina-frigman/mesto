@@ -5,6 +5,7 @@ let statusForm = document.querySelector('.popup__input_type_status');
 let popup = document.querySelector('.popup');
 let nameProfile = document.querySelector('.profile__name');
 let statusProfile = document.querySelector('.profile-info__status');
+let form = document.querySelector('.popup__form');
 
 function popupOpening() {
     popup.classList.add('popup_opened');
@@ -25,4 +26,4 @@ function savingData(evt) {
 
 editButton.addEventListener('click', popupOpening);
 closeButton.addEventListener('click', popupClosing);
-addEventListener('submit', savingData);
+form.addEventListener('submit', savingData);
