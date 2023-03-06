@@ -23,60 +23,39 @@
                 <button class="profile__add" type="button"></button>
             </section>
             <section class="places">
-                <article class="place">
-                    <img class="place__image" src="./images/walk.jpeg" alt="6-я советская">
-                    <div class="place__info">
-                        <h2 class="place__name">Летняя прогулка в петербурге</h2>
-                        <button class="place__like place__like_active" type="button"></button>
-                    </div>
-                </article>
-                <article class="place">
-                    <img class="place__image" src="./images/repetition.jpeg" alt="школьный подвал">
-                    <div class="place__info">
-                        <h2 class="place__name">Репетиция перед выступлением</h2>
-                        <button class="place__like place__like_active" type="button"></button>
-                    </div>
-                </article>
-                <article class="place">
-                    <img class="place__image" src="./images/school.jpeg" alt="гимназия">
-                    <div class="place__info">
-                        <h2 class="place__name">Вечерняя школа</h2>
-                        <button class="place__like place__like_active" type="button"></button>
-                    </div>
-                </article>
-                <article class="place">
-                    <img class="place__image" src="./images/winter.jpeg" alt="вид из окна">
-                    <div class="place__info">
-                        <h2 class="place__name">Школьный зимний пейзаж</h2>
-                        <button class="place__like place__like_active" type="button"></button>
-                    </div>
-                </article>
-                <article class="place">
-                    <img class="place__image" src="./images/graduation.jpeg" alt="актовый зал">
-                    <div class="place__info">
-                        <h2 class="place__name">Выпускной сестры</h2>
-                        <button class="place__like place__like_active" type="button"></button>
-                    </div>
-                </article>
-                <article class="place">
-                    <img class="place__image" src="./images/seaside.jpeg" alt="берег залива">
-                    <div class="place__info">
-                        <h2 class="place__name">Побережье комарово</h2>
-                        <button class="place__like place__like_active" type="button"></button>
-                    </div>
-                </article>
+                <template class="place-template">
+                    <article class="place">
+                        <button class="place__delete" type="button"></button>
+                        <img class="place__image">
+                        <div class="place__info">
+                            <h2 class="place__name"></h2>
+                            <button class="place__like place__like_active" type="button"></button>
+                        </div>
+                    </article>
+                </template>
             </section>
-            <div class="popup">
+            <div class="popup popup_profile">
                 <div class="popup__container">
-                    <button class="popup__close" type="button"></button>
+                    <button class="popup__close popup__close_profile" type="button"></button>
                     <form class="popup__form" name="profile">
                         <h2 class="popup__title">Редактировать профиль</h2>
                         <input class="popup__input popup__input_type_name" name="name" type="text" required placeholder="Имя пользователя">
                         <input class="popup__input popup__input_type_status" name="status" type="text" required placeholder="Статус пользователя">
-                        <button class="popup__submit" type="submit">Сохранить</button>
+                        <button class="popup__submit popup__submit_profile" type="submit">Сохранить</button>
                     </form>
                 </div>
             </div>
+            <section class="popup popup_post">
+                <div class="popup__container">
+                    <button class="popup__close popup__close_post" type="button"></button>
+                    <form class="popup__form" name="post">
+                        <h1 class="popup__title">Новое место</h1>
+                        <input class="popup__input popup__input_type_name-place" type="text" placeholder="Название">
+                        <input class="popup__input popup__input_type_url" type="text" placeholder="Ссылка на картинку">
+                        <button class="popup__submit popup__submit_post" type="submit">Создать</button>
+                    </form>
+                </div>
+            </section>
         </main>
         <footer class="footer">
             <p class="footer__text">&copy; 2023. mesto. yella</p>
