@@ -21,32 +21,32 @@ const placesList = document.querySelector('.places');
 const initialCards = [
     {
       name: 'Летняя прогулка в петербурге',
-      link: 'https://github.com/chaosyella/mesto/blob/main/images/walk.jpeg?raw=true',
+      link: './images/walk.jpeg',
       alt: 'закат в центре Петербурга'
     },
     {
       name: 'Репетиция перед выступлением',
-      link: 'https://github.com/chaosyella/mesto/blob/main/images/repetition.jpeg?raw=true',
+      link: './images/repetition.jpeg',
       alt: 'школьный подвал и группа одноклассников'
     },
     {
       name: 'Вечерняя школа',
-      link: 'https://github.com/chaosyella/mesto/blob/main/images/school.jpeg?raw=true',
+      link: './images/school.jpeg',
       alt: 'темный коридор'
     },
     {
       name: 'Школьный зимний пейзаж',
-      link: 'https://github.com/chaosyella/mesto/blob/main/images/winter.jpeg?raw=true',
+      link: './images/winter.jpeg',
       alt: 'вид из окна'
     },
     {
       name: 'Выпускной сестры',
-      link: 'https://github.com/chaosyella/mesto/blob/main/images/graduation.jpeg?raw=true',
+      link: './images/graduation.jpeg',
       alt: 'получение диплома'
     },
     {
       name: 'Побережье комарово',
-      link: 'https://github.com/chaosyella/mesto/blob/main/images/seaside.jpeg?raw=true',
+      link: './images/seaside.jpeg',
       alt: 'берег Финского залива'
     }
   ];
