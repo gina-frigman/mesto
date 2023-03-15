@@ -19,7 +19,7 @@
 
 **figma**
 
-сайт сделан с помощью [макета из фигмы](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1).
+сайт сделан с помощью [макета из фигмы](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1).
 как я уже сказала, присутствуют некоторые изменения и отклонения от образца.
 
 **методы создания**
@@ -85,20 +85,12 @@
 * function
 
 ```js
+
 function savingData(evt) {
     evt.preventDefault();
-    let profileInfo = document.querySelector('.profile-info');
-    
-    profileInfo.innerHTML = `
-    <div class="profile-info">
-        <div class="profile-info-flex">
-            <p class="profile-info-flex__name">${nameForm.value}</p>
-            <button class="profile-info-flex__edit" type="button"></button>
-        </div>
-        <p class="profile-info__status">${statusForm.value}</p>
-    </div>
-    `;
-    formDisappearing();
+    nameProfile.textContent = nameForm.value;
+    statusProfile.textContent = statusForm.value;
+    profilePopupClosing();
 };
 ```
 
@@ -106,6 +98,22 @@ function savingData(evt) {
 
 ```js
 closeButton.addEventListener('click', formDisappearing);
+```
+
+* template
+
+```html
+
+<template id="place-template">
+    <article class="place">
+        <button class="place__delete" type="button"></button>
+        <img class="place__image" src="" alt="">
+        <div class="place__info">
+            <h2 class="place__name"></h2>
+            <button class="place__like" type="button"></button>
+        </div>
+    </article>
+</template>
 ```
 
 **доработка**
@@ -122,16 +130,6 @@ closeButton.addEventListener('click', formDisappearing);
 все секции сайта имеют либо плавное изменение ширины, либо два брейкпоинта, на которых происходят кардинальные изменения. у профиля такого нет.
 
 
-3. возможность ставить лайки
-
-в следующем спринте это будет реализовано.
-
-
-4. возможность добавлять фотографии
-
-не уверена, что в следующих спринтах это будет реализовано, но идею нужно воплотить в жизнь, чтобы кнопка не была бесполезной.
-
-
-5. плавное возвращение цвета на кнопках, когда курсор убрали
+3. плавное возвращение цвета на кнопках, когда курсор убрали
 
 я не до конца разобралась в теме переходов, но позже займусь этим.
