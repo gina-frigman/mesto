@@ -61,7 +61,23 @@ function openPopup(popup) {
 };
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-}
+};
+function keyClosingPopup(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        if (openedPopup) {
+            closePopup(openedPopup);
+        };
+    };
+};
+function mouseClosingPopup(evt) {
+    const popups = Array.from(document.querySelectorAll('.popup'));
+    popups.forEach(function(popup) {
+        if (evt.target === popup) {
+            closePopup(popup);
+        };
+    });
+};
 //сохранение данных
 function submitEditProfileForm(evt) {
     evt.preventDefault();
@@ -129,12 +145,15 @@ buttonOpenAddCardPopup.addEventListener('click', function(){
 closeProfilePopupButton.addEventListener('click', function(){
     closePopup(popupEditProfile);
 });
+document.addEventListener('keydown', keyClosingPopup);
+document.addEventListener('click', mouseClosingPopup);
 closePostPopupButton.addEventListener('click', function(){
     closePopup(popupAddPost);
 });
 closePlacePopupButton.addEventListener('click', function(){
     closePopup(popupOpenPlace);
 });
+
 // вызовы сохранения данных и добавления карточки пользователя
 formProfile.addEventListener('submit', submitEditProfileForm);
 formPost.addEventListener('submit', addPost);
