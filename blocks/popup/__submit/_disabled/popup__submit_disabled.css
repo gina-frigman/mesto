@@ -1,7 +1,6 @@
 .popup__submit_disabled {
-    background-color: rgba(0, 0, 0, .15);
+    background-color: #e5e5e5;
     cursor: default;
-    border: 1px solid rgba(0, 0, 0, .1);
     color: rgba(0, 0, 0, .1);
 }
 

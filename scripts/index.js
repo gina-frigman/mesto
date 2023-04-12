@@ -56,27 +56,30 @@ const initialCards = [
     }
   ];
 // открытие/закрытие попапов
+function closeByEsc(evt) {
+    if (evt.key === "Escape") {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup)
+    };
+};
+function closeByMouse(evt) {
+    if (evt.target === (document.querySelector('.popup_profile'))) {
+        closePopup(popupEditProfile);
+    } else if (evt.target === (document.querySelector('.popup_post'))) {
+        closePopup(popupAddPost)
+    } else if (evt.target === (document.querySelector('.popup_place'))) {
+        closePopup(popupOpenPlace);
+    };
+};
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEsc);
+    popup.addEventListener('click', closeByMouse);
 };
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-};
-function keyClosingPopup(evt) {
-    if (evt.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        if (openedPopup) {
-            closePopup(openedPopup);
-        };
-    };
-};
-function mouseClosingPopup(evt) {
-    const popups = Array.from(document.querySelectorAll('.popup'));
-    popups.forEach(function(popup) {
-        if (evt.target === popup) {
-            closePopup(popup);
-        };
-    });
+    document.removeEventListener('keydown', closeByEsc);
+    popup.removeEventListener('click', closeByMouse);
 };
 //сохранение данных
 function submitEditProfileForm(evt) {
@@ -132,6 +135,8 @@ function addPost(evt) {
     placesList.prepend(newPost);
     closePopup(popupAddPost);
     formPost.reset();
+    evt.submitter.classList.add('popup__submit_disabled');
+    evt.submitter.disabled = true;
 };
 // вызов открытия/закрытия попапов
 buttonOpenEditProfilePopup.addEventListener('click', function(){
@@ -145,15 +150,12 @@ buttonOpenAddCardPopup.addEventListener('click', function(){
 closeProfilePopupButton.addEventListener('click', function(){
     closePopup(popupEditProfile);
 });
-document.addEventListener('keydown', keyClosingPopup);
-document.addEventListener('click', mouseClosingPopup);
 closePostPopupButton.addEventListener('click', function(){
     closePopup(popupAddPost);
 });
 closePlacePopupButton.addEventListener('click', function(){
     closePopup(popupOpenPlace);
 });
-
 // вызовы сохранения данных и добавления карточки пользователя
 formProfile.addEventListener('submit', submitEditProfileForm);
 formPost.addEventListener('submit', addPost);
