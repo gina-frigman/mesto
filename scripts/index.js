@@ -1,9 +1,7 @@
 // объявим пременные: всех кнопок
 const buttonOpenEditProfilePopup = document.querySelector('.profile__edit');
 const buttonOpenAddCardPopup = document.querySelector('.profile__add');
-const closeProfilePopupButton = document.querySelector('.popup__close_profile');
-const closePostPopupButton = document.querySelector('.popup__close_post');
-const closePlacePopupButton = document.querySelector('.popup__close_place');
+const buttonCloseList = document.querySelectorAll('.popup__close');
 // попапов и их составляющих
 const popupEditProfile = document.querySelector('.popup_profile');
 const popupAddPost = document.querySelector('.popup_post');
@@ -63,24 +61,23 @@ function closeByEsc(evt) {
     };
 };
 function closeByMouse(evt) {
-    if (evt.target === (document.querySelector('.popup_profile'))) {
-        closePopup(popupEditProfile);
-    } else if (evt.target === (document.querySelector('.popup_post'))) {
-        closePopup(popupAddPost)
-    } else if (evt.target === (document.querySelector('.popup_place'))) {
-        closePopup(popupOpenPlace);
-    };
+    if (evt.target.classList.contains('popup')) {
+        closePopup(evt.target);
+      }
 };
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEsc);
-    popup.addEventListener('click', closeByMouse);
 };
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEsc);
-    popup.removeEventListener('click', closeByMouse);
 };
+buttonCloseList.forEach(btn => {
+    const popup = btn.closest('.popup');
+    popup.addEventListener('mousedown', closeByMouse);
+    btn.addEventListener('click', () => closePopup(popup)); 
+  })
 //сохранение данных
 function submitEditProfileForm(evt) {
     evt.preventDefault();
@@ -146,15 +143,6 @@ buttonOpenEditProfilePopup.addEventListener('click', function(){
 });
 buttonOpenAddCardPopup.addEventListener('click', function(){
     openPopup(popupAddPost);
-});
-closeProfilePopupButton.addEventListener('click', function(){
-    closePopup(popupEditProfile);
-});
-closePostPopupButton.addEventListener('click', function(){
-    closePopup(popupAddPost);
-});
-closePlacePopupButton.addEventListener('click', function(){
-    closePopup(popupOpenPlace);
 });
 // вызовы сохранения данных и добавления карточки пользователя
 formProfile.addEventListener('submit', submitEditProfileForm);

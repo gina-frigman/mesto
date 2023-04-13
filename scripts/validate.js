@@ -1,4 +1,4 @@
-const cardElement = {
+const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit',
@@ -66,4 +66,4 @@ const enableValidation = ({formSelector, inputSelector, inputErrorClass, errorCl
     });
 };
 
-enableValidation(cardElement);
+enableValidation(validationConfig);
