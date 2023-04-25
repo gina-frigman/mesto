@@ -1,3 +1,7 @@
+// импортируем классы карточек и валидации
+import Card from './card.js';
+import FormValidator from './FormValidator.js';
+import {initialCards} from './initialCards.js';
 // объявим пременные: всех кнопок
 const buttonOpenEditProfilePopup = document.querySelector('.profile__edit');
 const buttonOpenAddCardPopup = document.querySelector('.profile__add');
@@ -19,46 +23,12 @@ const inputCardUrl = document.querySelector('.popup__input_type_url');
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile-info__status');
 const placesList = document.querySelector('.places');
-const placeTemplate = document.querySelector('#place-template').content;
-// данные для карточек
-const initialCards = [
-    {
-      name: 'Летняя прогулка в петербурге',
-      link: './images/walk.jpeg',
-      alt: 'закат в центре Петербурга'
-    },
-    {
-      name: 'Репетиция перед выступлением',
-      link: './images/repetition.jpeg',
-      alt: 'школьный подвал и группа одноклассников'
-    },
-    {
-      name: 'Вечерняя школа',
-      link: './images/school.jpeg',
-      alt: 'темный коридор'
-    },
-    {
-      name: 'Школьный зимний пейзаж',
-      link: './images/winter.jpeg',
-      alt: 'вид из окна'
-    },
-    {
-      name: 'Выпускной сестры',
-      link: './images/graduation.jpeg',
-      alt: 'получение диплома'
-    },
-    {
-      name: 'Побережье комарово',
-      link: './images/seaside.jpeg',
-      alt: 'берег Финского залива'
-    }
-  ];
 // открытие/закрытие попапов
 function closeByEsc(evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector('.popup_opened');
-        closePopup(openedPopup)
-    };
+        closePopup(openedPopup);
+    }
 };
 function closeByMouse(evt) {
     if (evt.target.classList.contains('popup')) {
@@ -73,67 +43,26 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEsc);
 };
-buttonCloseList.forEach(btn => {
-    const popup = btn.closest('.popup');
-    popup.addEventListener('mousedown', closeByMouse);
-    btn.addEventListener('click', () => closePopup(popup)); 
-  })
-//сохранение данных
+// сохранение данных
 function submitEditProfileForm(evt) {
     evt.preventDefault();
     profileName.textContent = inputUserName.value;
     profileStatus.textContent = inputUserProfession.value;
     closePopup(popupEditProfile);
 };
-// лайки карточкам
-function like(evt) {
-    evt.target.classList.toggle('place__like_active');
-};
-// создание карточки и добавление им функций
-function createPlaces(element) {
-    const placeElement = placeTemplate.querySelector('.place').cloneNode(true);
-    const likePostButton = placeElement.querySelector('.place__like');
-    const deletePostButton = placeElement.querySelector('.place__delete');
-    const placeImage = placeElement.querySelector('.place__image');
-
-    placeElement.querySelector('.place__name').textContent = element.name;
-    placeImage.src = element.link;
-    placeImage.alt = element.alt;
-
-    function deletePost() {
-        const placeCard = deletePostButton.closest('.place');
-        placeCard.remove();
-    };
-
-    likePostButton.addEventListener('click', like);
-    deletePostButton.addEventListener('click', deletePost);
-    placeImage.addEventListener('click', function(){
-        popupPlaceImage.src = placeImage.src;
-        popupPlaceImage.alt = placeImage.alt;
-        popupPlaceName.textContent = placeElement.querySelector('.place__name').textContent;
-        openPopup(popupOpenPlace);
-    });
-
-    return placeElement;
-};
-// добавление карточек в dom с данными из массива
-initialCards.forEach(function(element) {
-    const newPlaces = createPlaces(element);
-    placesList.append(newPlaces);
-});
-// создание карточки пользователя и ее добавление в dom
-function addPost(evt) {
-    evt.preventDefault();
-    const newCard = {
-        name: inputCardName.value,
-        link: inputCardUrl.value
-    };
-    const newPost = createPlaces(newCard);
-    placesList.prepend(newPost);
-    closePopup(popupAddPost);
-    formPost.reset();
-    evt.submitter.classList.add('popup__submit_disabled');
-    evt.submitter.disabled = true;
+// создание карточки пользователем
+function addCard(evt) {
+  evt.preventDefault();
+  const card = new Card({
+    title: inputCardName.value,
+    link: inputCardUrl.value
+  });
+  const cardElement = card.generateCard();
+  placesList.prepend(cardElement);
+  closePopup(popupAddPost);
+  formPost.reset();
+  evt.submitter.classList.add('popup__submit_disabled');
+  evt.submitter.disabled = true;
 };
 // вызов открытия/закрытия попапов
 buttonOpenEditProfilePopup.addEventListener('click', function(){
@@ -144,6 +73,34 @@ buttonOpenEditProfilePopup.addEventListener('click', function(){
 buttonOpenAddCardPopup.addEventListener('click', function(){
     openPopup(popupAddPost);
 });
+buttonCloseList.forEach(btn => {
+    const popup = btn.closest('.popup');
+    popup.addEventListener('mousedown', closeByMouse);
+    btn.addEventListener('click', () => closePopup(popup)); 
+});
 // вызовы сохранения данных и добавления карточки пользователя
 formProfile.addEventListener('submit', submitEditProfileForm);
-formPost.addEventListener('submit', addPost);
+formPost.addEventListener('submit', addCard);
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
+
+const formList = Array.from(document.querySelectorAll('.popup__form'));
+formList.forEach((formElement) => {
+    const validator = new FormValidator(validationConfig, formElement);
+    validator.enableValidation();
+});
+
+initialCards.forEach((element) => {
+  const card = new Card(element);
+  const cardElement = card.generateCard();
+  placesList.append(cardElement);
+});
+//экспортируем все нужные переменные и функции
+export {popupOpenPlace, popupPlaceName, popupPlaceImage, openPopup}
