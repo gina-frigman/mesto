@@ -1,5 +1,5 @@
 // импортируем классы карточек и валидации
-import Card from './card.js';
+import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import {initialCards} from './initialCards.js';
 // объявим пременные: всех кнопок
@@ -50,19 +50,21 @@ function submitEditProfileForm(evt) {
     profileStatus.textContent = inputUserProfession.value;
     closePopup(popupEditProfile);
 };
-// создание карточки пользователем
+// создание карточек
+function createCard(element) {
+    const card = new Card(element, document.querySelector('#place-template'));
+    const cardElement = card.generateCard();
+    placesList.prepend(cardElement);
+}
 function addCard(evt) {
-  evt.preventDefault();
-  const card = new Card({
-    title: inputCardName.value,
-    link: inputCardUrl.value
-  });
-  const cardElement = card.generateCard();
-  placesList.prepend(cardElement);
-  closePopup(popupAddPost);
-  formPost.reset();
-  evt.submitter.classList.add('popup__submit_disabled');
-  evt.submitter.disabled = true;
+    evt.preventDefault();
+    createCard({
+      title: inputCardName.value,
+      link: inputCardUrl.value
+    });
+    closePopup(popupAddPost);
+    formPost.reset();
+    evt.submitter.disabled = true;
 };
 // вызов открытия/закрытия попапов
 buttonOpenEditProfilePopup.addEventListener('click', function(){
@@ -83,12 +85,12 @@ formProfile.addEventListener('submit', submitEditProfileForm);
 formPost.addEventListener('submit', addCard);
 
 const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
 };
 
 const formList = Array.from(document.querySelectorAll('.popup__form'));
@@ -98,9 +100,7 @@ formList.forEach((formElement) => {
 });
 
 initialCards.forEach((element) => {
-  const card = new Card(element);
-  const cardElement = card.generateCard();
-  placesList.append(cardElement);
+  createCard(element);
 });
 //экспортируем все нужные переменные и функции
 export {popupOpenPlace, popupPlaceName, popupPlaceImage, openPopup}

@@ -1,23 +1,8 @@
 export const initialCards = [
     {
-      title: 'Летняя прогулка в петербурге',
-      link: './images/walk.jpeg',
-      alt: 'закат в центре Петербурга'
-    },
-    {
-      title: 'Репетиция перед выступлением',
-      link: './images/repetition.jpeg',
-      alt: 'школьный подвал и группа одноклассников'
-    },
-    {
-      title: 'Вечерняя школа',
-      link: './images/school.jpeg',
-      alt: 'темный коридор'
-    },
-    {
-      title: 'Школьный зимний пейзаж',
-      link: './images/winter.jpeg',
-      alt: 'вид из окна'
+      title: 'Побережье комарово',
+      link: './images/seaside.jpeg',
+      alt: 'берег Финского залива'
     },
     {
       title: 'Выпускной сестры',
@@ -25,8 +10,23 @@ export const initialCards = [
       alt: 'получение диплома'
     },
     {
-      title: 'Побережье комарово',
-      link: './images/seaside.jpeg',
-      alt: 'берег Финского залива'
+      title: 'Школьный зимний пейзаж',
+      link: './images/winter.jpeg',
+      alt: 'вид из окна'
+    },
+    {
+      title: 'Вечерняя школа',
+      link: './images/school.jpeg',
+      alt: 'темный коридор'
+    },
+    {
+      title: 'Репетиция перед выступлением',
+      link: './images/repetition.jpeg',
+      alt: 'школьный подвал и группа одноклассников'
+    },
+    {
+      title: 'Летняя прогулка в петербурге',
+      link: './images/walk.jpeg',
+      alt: 'закат в центре Петербурга'
     }
 ];
