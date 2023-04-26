@@ -1,5 +1,5 @@
 // импортируем классы карточек и валидации
-import Card from './Card.js';
+import Card from './card.js';
 import FormValidator from './FormValidator.js';
 import {initialCards} from './initialCards.js';
 // объявим пременные: всех кнопок
