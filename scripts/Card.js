@@ -28,7 +28,7 @@ export default class Card {
     this._likeButton.classList.toggle('place__like_active');
   }
   _deleteCard() {
-    this._element = null;
+    this._element.remove();
   }
   _openCard(evt) {
     popupPlaceImage.src = this.link;

@@ -2,7 +2,16 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import {initialCards} from './initialCards.js';
-// объявим пременные: всех кнопок
+// объявим селекторы для валидации
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+};
+// объявим переменные: всех кнопок
 const buttonOpenEditProfilePopup = document.querySelector('.profile__edit');
 const buttonOpenAddCardPopup = document.querySelector('.profile__add');
 const buttonCloseList = document.querySelectorAll('.popup__close');
@@ -23,6 +32,12 @@ const inputCardUrl = document.querySelector('.popup__input_type_url');
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile-info__status');
 const placesList = document.querySelector('.places');
+// подключение валидации
+const formList = Array.from(document.querySelectorAll('.popup__form'));
+formList.forEach((formElement) => {
+    const validator = new FormValidator(validationConfig, formElement);
+    validator.enableValidation();
+});
 // открытие/закрытие попапов
 function closeByEsc(evt) {
     if (evt.key === "Escape") {
@@ -36,6 +51,7 @@ function closeByMouse(evt) {
       }
 };
 function openPopup(popup) {
+    renderValidation(popup);
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEsc);
 };
@@ -50,12 +66,24 @@ function submitEditProfileForm(evt) {
     profileStatus.textContent = inputUserProfession.value;
     closePopup(popupEditProfile);
 };
-// создание карточек
+// создание и добавление карточек
 function createCard(element) {
     const card = new Card(element, document.querySelector('#place-template'));
     const cardElement = card.generateCard();
+    return cardElement;
+}
+function addCard(cardElement) {
     placesList.prepend(cardElement);
 }
+function renderValidation(popup) {
+    popup === popupAddPost
+    ? new FormValidator(validationConfig, formPost).resetValidation()
+    : new FormValidator(validationConfig, formProfile).resetValidation();
+}
+initialCards.forEach((element) => {
+    addCard(createCard(element));
+});
+// создание карточки пользователя
 function addPost(evt) {
     evt.preventDefault();
     addCard(createCard({
@@ -63,14 +91,9 @@ function addPost(evt) {
       link: inputCardUrl.value
     }));
     closePopup(popupAddPost);
+    renderValidation(popupAddPost);
     formPost.reset();
 };
-function addCard(cardElement) {
-    placesList.prepend(cardElement);
-};
-initialCards.forEach((element) => {
-  addCard(createCard(element));
-});
 // вызов открытия/закрытия попапов
 buttonOpenEditProfilePopup.addEventListener('click', function(){
     inputUserName.value = profileName.textContent;
@@ -88,19 +111,6 @@ buttonCloseList.forEach(btn => {
 // вызовы сохранения данных и добавления карточки пользователя
 formProfile.addEventListener('submit', submitEditProfileForm);
 formPost.addEventListener('submit', addPost);
-// добаление валидации формам для пользователя
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit',
-    inactiveButtonClass: 'popup__submit_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active'
-};
-const formList = Array.from(document.querySelectorAll('.popup__form'));
-formList.forEach((formElement) => {
-    const validator = new FormValidator(validationConfig, formElement);
-    validator.enableValidation();
-});
-// экспортируем все нужные переменные и функции
-export {popupOpenPlace, popupPlaceName, popupPlaceImage, openPopup}
+
+//экспортируем все нужные переменные и функции
+export {popupAddPost, popupOpenPlace, popupPlaceName, popupPlaceImage, openPopup}
