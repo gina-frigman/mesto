@@ -3,7 +3,6 @@ export default class Card {
   constructor(data, templateSelector) {
     this._templateSelector = templateSelector;
     this.title = data.title;
-    this.alt = data.alt;
     this.link = data.link;
   }
 
@@ -19,7 +18,6 @@ export default class Card {
     this._element = this._getTemplate();
     this._element.querySelector('.place__name').textContent = this.title;
     this._element.querySelector('.place__image').src = this.link;
-    this._element.querySelector('.place__image').alt = this.alt;
     this._setEventListeners();
     return this._element;
   }
@@ -32,7 +30,6 @@ export default class Card {
   }
   _openCard(evt) {
     popupPlaceImage.src = this.link;
-    popupPlaceImage.alt = this.alt;
     popupPlaceName.textContent = this.title;
     openPopup(popupOpenPlace);
   }

@@ -1,32 +1,26 @@
 export const initialCards = [
     {
       title: 'Побережье комарово',
-      link: './images/seaside.jpeg',
-      alt: 'берег Финского залива'
+      link: './images/seaside.jpeg'
     },
     {
       title: 'Выпускной сестры',
-      link: './images/graduation.jpeg',
-      alt: 'получение диплома'
+      link: './images/graduation.jpeg'
     },
     {
       title: 'Школьный зимний пейзаж',
-      link: './images/winter.jpeg',
-      alt: 'вид из окна'
+      link: './images/winter.jpeg'
     },
     {
       title: 'Вечерняя школа',
-      link: './images/school.jpeg',
-      alt: 'темный коридор'
+      link: './images/school.jpeg'
     },
     {
       title: 'Репетиция перед выступлением',
-      link: './images/repetition.jpeg',
-      alt: 'школьный подвал и группа одноклассников'
+      link: './images/repetition.jpeg'
     },
     {
       title: 'Летняя прогулка в петербурге',
-      link: './images/walk.jpeg',
-      alt: 'закат в центре Петербурга'
+      link: './images/walk.jpeg'
     }
 ];

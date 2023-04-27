@@ -32,12 +32,12 @@ const inputCardUrl = document.querySelector('.popup__input_type_url');
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile-info__status');
 const placesList = document.querySelector('.places');
+// форм с валидацией
+const popupEditProfileValidation = new FormValidator(validationConfig, formProfile);
+const popupAddPostValidation = new FormValidator(validationConfig, formPost);
 // подключение валидации
-const formList = Array.from(document.querySelectorAll('.popup__form'));
-formList.forEach((formElement) => {
-    const validator = new FormValidator(validationConfig, formElement);
-    validator.enableValidation();
-});
+popupEditProfileValidation.enableValidation();
+popupAddPostValidation.enableValidation();
 // открытие/закрытие попапов
 function closeByEsc(evt) {
     if (evt.key === "Escape") {
@@ -51,9 +51,19 @@ function closeByMouse(evt) {
       }
 };
 function openPopup(popup) {
-    renderValidation(popup);
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEsc);
+};
+function openPopupEditProfile() {
+    inputUserName.value = profileName.textContent;
+    inputUserProfession.value = profileStatus.textContent;
+    popupEditProfileValidation.resetValidation();
+    openPopup(popupEditProfile);
+};
+function openPopupAddPost() {
+    formPost.reset();
+    popupAddPostValidation.resetValidation();
+    openPopup(popupAddPost);
 };
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
@@ -75,11 +85,6 @@ function createCard(element) {
 function addCard(cardElement) {
     placesList.prepend(cardElement);
 }
-function renderValidation(popup) {
-    popup === popupAddPost
-    ? new FormValidator(validationConfig, formPost).resetValidation()
-    : new FormValidator(validationConfig, formProfile).resetValidation();
-}
 initialCards.forEach((element) => {
     addCard(createCard(element));
 });
@@ -91,18 +96,11 @@ function addPost(evt) {
       link: inputCardUrl.value
     }));
     closePopup(popupAddPost);
-    renderValidation(popupAddPost);
     formPost.reset();
 };
 // вызов открытия/закрытия попапов
-buttonOpenEditProfilePopup.addEventListener('click', function(){
-    inputUserName.value = profileName.textContent;
-    inputUserProfession.value = profileStatus.textContent;
-    openPopup(popupEditProfile);
-});
-buttonOpenAddCardPopup.addEventListener('click', function(){
-    openPopup(popupAddPost);
-});
+buttonOpenEditProfilePopup.addEventListener('click', openPopupEditProfile);
+buttonOpenAddCardPopup.addEventListener('click', openPopupAddPost);
 buttonCloseList.forEach(btn => {
     const popup = btn.closest('.popup');
     popup.addEventListener('mousedown', closeByMouse);
