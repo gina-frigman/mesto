@@ -1,7 +1,7 @@
 .place__delete {
     width: 18px;
     height: 19px;
-    background-image: url(./../../../images/delete.svg);
+    background-image: url(../../../../images/delete.svg);
     background-size: contain;
     position: absolute;
     z-index: 1;

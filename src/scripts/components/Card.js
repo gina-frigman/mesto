@@ -1,23 +1,24 @@
-import { openPopup, popupOpenPlace, popupPlaceName, popupPlaceImage } from "./index.js";
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor({ data, handleCardClick }, templateSelector) {
     this._templateSelector = templateSelector;
-    this.title = data.title;
-    this.link = data.link;
+    this._title = data.title;
+    this._link = data.link;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
     const cardElement = document
     .querySelector('#place-template')
     .content
+    .querySelector('.place')
     .cloneNode(true);
 
     return cardElement;
   }
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.place__name').textContent = this.title;
-    this._element.querySelector('.place__image').src = this.link;
+    this._element.querySelector('.place__name').textContent = this._title;
+    this._element.querySelector('.place__image').src = this._link;
     this._setEventListeners();
     return this._element;
   }
@@ -27,11 +28,6 @@ export default class Card {
   }
   _deleteCard() {
     this._element.remove();
-  }
-  _openCard(evt) {
-    popupPlaceImage.src = this.link;
-    popupPlaceName.textContent = this.title;
-    openPopup(popupOpenPlace);
   }
 
   _setEventListeners() {
@@ -43,8 +39,8 @@ export default class Card {
     this._deleteButton.addEventListener('click', () => {
       this._deleteCard();
     });
-    this._element.querySelector('.place__image').addEventListener('click', (evt) => {
-      this._openCard(evt);
+    this._element.querySelector('.place__image').addEventListener('click', () => {
+      this._handleCardClick(this._link, this._title);
     });
   }
 }
