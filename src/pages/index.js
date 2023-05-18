@@ -1,19 +1,17 @@
 // импортируем все классы
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import UserInfo from './components/UserInfo.js';
-import Section from './components/Section.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+import Section from '../components/Section.js';
 // переменные
 import { buttonOpenAddCardPopup, 
     buttonOpenEditProfilePopup, 
     profileName, 
-    profileStatus, 
+    profileprofession, 
     validationConfig,
-    initialCards, 
-    inputCardName, 
-    inputCardUrl, 
+    initialCards,
     popupOpenPlace, 
     formPost,
     formProfile,
@@ -23,23 +21,23 @@ import { buttonOpenAddCardPopup,
     inputUserName,
     inputUserProfession,
     placeTemplate
-} from './utils/constants.js';
+} from '../utils/constants.js';
 // стили
-import './../styles/pages/index.css'
-// объявим 
-// формы с валидацией
+import './index.css'
+// объявим формы с валидацией
 const popupEditProfileValidation = new FormValidator(validationConfig, formProfile);
 const popupAddPostValidation = new FormValidator(validationConfig, formPost);
 // подключение валидации
 popupEditProfileValidation.enableValidation();
 popupAddPostValidation.enableValidation();
+// и попапа открытой карточки
+const popupWithImage = new PopupWithImage(popupOpenPlace);
+popupWithImage.setEventListeners();
 // создание карточек
 const renderCard = (element) => {
     const card = new Card({
         data: element,
         handleCardClick: (link, title) => {
-            const popupWithImage = new PopupWithImage(popupOpenPlace);
-            popupWithImage.setEventListeners();
             popupWithImage.open(link, title);
         }
     }, placeTemplate)
@@ -47,28 +45,22 @@ const renderCard = (element) => {
     cardList.addItem(cardRendered);
 }
 const cardList = new Section({
-    items: initialCards,
     renderer: renderCard}, placesList)  
-cardList.renderItem();
+cardList.renderItem(initialCards);
 // создание попапа редактирования профиля
 const userInfo = new UserInfo({
     userName: profileName,
-    userProfession: profileStatus
+    userProfession: profileprofession
 });
-const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt) => {
-    userInfo.setUserInfo({
-        name: inputUserName.value,
-        profession: inputUserProfession.value
-    });
+const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (data) => {
+    userInfo.setUserInfo(data);
     popupEditProfile.close();
 });
 popupEditProfile.setEventListeners();
-// и попапа создания карточки
-const popupAddPost = new PopupWithForm(popupAddPostSelector, () => {
-    renderCard({
-        link: inputCardUrl.value,
-        title: inputCardName.value
-    })
+// попапа создания карточки
+const popupAddPost = new PopupWithForm(popupAddPostSelector, (data) => {
+    renderCard(data);
+    popupAddPost.close();
 });
 popupAddPost.setEventListeners();
 // слушатели открытия попапов

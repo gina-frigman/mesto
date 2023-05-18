@@ -8,6 +8,7 @@ export default class PopupWithImage extends Popup {
     open(link, title) {
         super.open();
         popupPlaceImage.src = link;
+        popupPlaceImage.alt = title;
         popupPlaceName.textContent = title;
     }
 }
