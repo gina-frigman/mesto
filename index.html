@@ -15,10 +15,10 @@
                 <img class="profile__avatar" src="./images/avatar.jpg" alt="фото профиля">
                 <div class="profile-info">
                     <div class="profile__info">
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <h1 class="profile__name"></h1>
                         <button class="profile__edit" type="button"></button>
                     </div>
-                    <p class="profile-info__profession">Исследователь океана</p>
+                    <p class="profile-info__about"></p>
                 </div>
                 <button class="profile__add" type="button"></button>
             </section>
@@ -45,9 +45,9 @@
                             <span class="popup__input-error name-input-error"></span>
                         </label>
                         <label class="popup__field">
-                            <input required id="profession-input" type="text" class="popup__input popup__input_type_profession" 
-                            name="profession" placeholder="Статус пользователя" minlength="2" maxlength="200">
-                            <span class="popup__input-error profession-input-error"></span>
+                            <input required id="about-input" type="text" class="popup__input popup__input_type_about" 
+                            name="about" placeholder="Статус пользователя" minlength="2" maxlength="200">
+                            <span class="popup__input-error about-input-error"></span>
                         </label>
                         <button class="popup__submit popup__submit_profile" type="submit">Сохранить</button>
                     </form>
@@ -75,7 +75,7 @@
                 </div>
             </section>
             <section class="popup popup_place">
-                <div class="popup__container popup__container_place">
+                <div class="popup__container popup__container_type_place">
                     <button class="popup__close popup__close_place" type="button"></button>
                     <img class="popup__image" src="#">
                     <h2 class="popup__name"></h2>

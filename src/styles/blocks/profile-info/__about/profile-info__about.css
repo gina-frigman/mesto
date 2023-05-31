@@ -1,4 +1,4 @@
-.profile-info__profession {
+.profile-info__about {
     max-width: 336px;
     font-weight: 400;
     font-size: 18px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 999px) {
-    .profile-info__profession {
+    .profile-info__about {
         max-width: 282px;
         margin-top: 7px;
         margin-bottom: 35px;
