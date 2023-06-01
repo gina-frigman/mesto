@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
         this._handleSubmitForm = handleSubmitForm;
         this._form = this._popup.querySelector('.popup__form')
         this._inputList = this._popup.querySelectorAll('.popup__input');
+        this._submitLoading = this._popup.querySelector('.popup__submit-loading');
     }
 
     _getInputValues() {
@@ -17,7 +18,6 @@ export default class PopupWithForm extends Popup {
     }
 
     renderLoading(isLoading) {
-        this._submitLoading = this._popup.querySelector('.popup__submit-loading');
         if (isLoading) {
             this._submitLoading.classList.add('popup__submit-loading_visible');
         } else {

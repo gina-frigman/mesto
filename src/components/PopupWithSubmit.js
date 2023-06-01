@@ -4,10 +4,10 @@ export default class PopupWithSubmit extends Popup {
         super(popupSelector);
         this._handleSubmitForm = handleSubmitForm;
         this._form = this._popup.querySelector('.popup__form')
+        this._submitLoading = this._popup.querySelector('.popup__submit-loading');
     }
 
     renderLoading(isLoading) {
-        this._submitLoading = this._popup.querySelector('.popup__submit-loading');
         if (isLoading) {
             this._submitLoading.classList.add('popup__submit-loading_visible');
         } else {
@@ -27,8 +27,6 @@ export default class PopupWithSubmit extends Popup {
             evt.preventDefault();
             this.renderLoading(true);
             this._handleSubmitForm(this._cardElement, this._cardId);
-            this.renderLoading(false);
-            this.close();
           });
     }
 }
