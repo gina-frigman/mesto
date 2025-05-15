@@ -15,7 +15,7 @@
 
 **github pages**
 
-[здесь вы можете прогуляться по моим воспоминаниям](https://chaosyella.github.io/mesto/)
+[здесь вы можете прогуляться по моим воспоминаниям](https://gina-frigman.github.io/mesto/)
 
 **figma**
 
